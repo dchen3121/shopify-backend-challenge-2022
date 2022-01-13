@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Inventory Items{% endblock %}</h1>
+  <a class="action" href="{{ url_for('item.create') }}">New Item</a>
+  <a class="action" href="{{ url_for('item.export') }}">Export CSV Data</a>
+{% endblock %}
+
+{% block content %}
+  {% for item in items %}
+    <article class="item">
+      <header>
+        <div>
+          <h1>{{ item['name'] }}</h1>
+        </div>
+        <a class="action" href="{{ url_for('item.update', id=item['id']) }}">Edit</a>
+      </header>
+      <p class="body">{{ item['num_in_stock'] }} in stock</p>
+      <p class="body">{{ item['description'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

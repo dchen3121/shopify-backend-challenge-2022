@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Item{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="name">Item Name</label>
+    <input name="name" id="name" value="{{ request.form['name'] }}" required>
+    <label for="num_in_stock">Number of Item in Stock</label>
+    <input name="num_in_stock" id="num_in_stock" value="{{ request.form['num_in_stock'] }}">
+    <label for="description">Item Description</label>
+    <textarea name="description" id="description">{{ request.form['description'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

@@ -1,0 +1,4 @@
+include inventory/schema.sql
+graft inventory/static
+graft inventory/templates
+global-exclude *.pyc

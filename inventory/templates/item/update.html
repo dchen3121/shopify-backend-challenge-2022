@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit: {{ item['name'] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="num_in_stock">Number in stock</label>
+    <input name="num_in_stock" id="num_in_stock" value="{{ request.form['num_in_stock'] or item['num_in_stock'] }}">
+    <label for="description">Item Description</label>
+    <textarea name="description" id="description">{{ request.form['description'] or item['description'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+  <form action="{{ url_for('item.index') }}" method="get">
+    <input type="submit" value="Cancel">
+  </form>
+  <form action="{{ url_for('item.update', id=item['id']) }}" method="delete">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+{% endblock %}
