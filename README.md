@@ -20,3 +20,4 @@ export FLASK_ENV=development
 python3 -m flask init-db
 python3 -m flask run
 ```
+Finally, go to localhost (or `http://127.0.0.1:5000/`) to see the inventory management app.
