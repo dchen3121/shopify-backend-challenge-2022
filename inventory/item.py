@@ -52,7 +52,7 @@ def create():
     return render_template('item/create.html')
 
 
-@bp.route('/<int:id>', methods=('GET', 'POST', 'DELETE'))
+@bp.route('/<int:id>', methods=('GET', 'POST'))
 def update(id):
     item = get_db().execute(
         'SELECT id, name, num_in_stock, description'
@@ -85,13 +85,15 @@ def update(id):
             db.commit()
             return redirect(url_for('item.index'))
 
-    elif request.method == 'DELETE':
-        db = get_db()
-        db.execute('DELETE FROM item WHERE id = ?', (id,))
-        db.commit()
-        return redirect(url_for('item.index'))
-
     return render_template('item/update.html', item=item)
+
+
+@bp.route('/<int:id>/delete', methods=('POST',))
+def delete(id):
+    db = get_db()
+    db.execute('DELETE FROM item WHERE id = ?', (id,))
+    db.commit()
+    return redirect(url_for('item.index'))
 
 
 @bp.route('/export')

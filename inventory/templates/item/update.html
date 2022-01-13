@@ -12,10 +12,12 @@
     <textarea name="description" id="description">{{ request.form['description'] or item['description'] }}</textarea>
     <input type="submit" value="Save">
   </form>
+
+  <form action="{{ url_for('item.delete', id=item['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+  </form>
+
   <form action="{{ url_for('item.index') }}" method="get">
     <input type="submit" value="Cancel">
-  </form>
-  <form action="{{ url_for('item.update', id=item['id']) }}" method="delete">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
   </form>
 {% endblock %}

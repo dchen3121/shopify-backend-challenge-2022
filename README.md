@@ -11,7 +11,7 @@ python3 -m venv venv
 To activate virtual environment and install dependencies:
 ```
 . venv/bin/activate
-python3 -m pip install -r requirements.txt
+python3 -m pip install -e .
 ```
 Then, to initialize the database and run the app locally:
 ```
